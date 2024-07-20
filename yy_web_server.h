@@ -64,6 +64,7 @@ class WebServer final
     static constexpr const std::string_view document_root{"document_root"};
     static constexpr const std::string_view enable_directory_listing{"enable_directory_listing"};
     static constexpr const std::string_view enable_http2{"enable_http2"};
+    static constexpr const std::string_view enable_keep_alive{"enable_keep_alive"};
     static constexpr const std::string_view keep_alive_timeout_ms{"keep_alive_timeout_ms"};
     static constexpr const std::string_view linger_timeout_ms{"linger_timeout_ms"};
     static constexpr const std::string_view listening_ports{"listening_ports"};
