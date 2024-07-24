@@ -63,7 +63,7 @@ bool WebServer::AddHandler(std::string uri,
     {
       uri = fmt::format("/{}"sv, uri);
     }
-    spdlog::debug("Adding handler at [{}]", uri);
+    spdlog::debug("Web Server: adding handler at [{}]", uri);
 
 
     auto l_handler = p_handler.get();
