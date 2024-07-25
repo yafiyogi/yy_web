@@ -29,7 +29,7 @@
 
 cmake_minimum_required(VERSION 3.24)
 
-project(yy_web LANGUAGES CXX)
+project(yy_web LANGUAGES CXX VERSION 0.0.1)
 
 set(YY_ROOT "${PROJECT_SOURCE_DIR}/..")
 set(YY_CMAKE "${YY_ROOT}/yy_cmake")
@@ -53,16 +53,31 @@ target_compile_options(yy_web
 
 target_sources(yy_web
   PRIVATE
-  yy_web_server.cpp)
-
-set(YY_WEB_HEADERS
-  yy_web_server.h)
+    yy_web_server.cpp
+  PUBLIC FILE_SET HEADERS
+    FILES
+      yy_web_server.h)
 
 #add_subdirectory(unit_tests)
 
-install(TARGETS yy_web )
-install(FILES ${YY_WEB_HEADERS} DESTINATION include/yy_web)
+install(TARGETS yy_web
+  EXPORT yy_webTargets
+  FILE_SET HEADERS DESTINATION include/yy_web)
 
+install(EXPORT yy_webTargets
+  FILE yy_webTargets.cmake
+  NAMESPACE yy_web::
+  DESTINATION lib/cmake/yy_web)
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file("yy_webConfigVersion.cmake"
+  VERSION ${yy_web_VERSION}
+  COMPATIBILITY AnyNewerVersion)
+
+install(FILES "yy_webConfig.cmake" "${CMAKE_CURRENT_BINARY_DIR}/yy_webConfigVersion.cmake"
+    DESTINATION lib/cmake/yy_web)
+
+get_target_property(YY_WEB_HEADERS yy_web HEADER_SET)
 get_target_property(YY_WEB_SOURCES yy_web SOURCES)
 
 add_custom_target(tidy-all
