@@ -58,8 +58,6 @@ target_sources(yy_web
     FILES
       yy_web_server.h)
 
-#add_subdirectory(unit_tests)
-
 install(TARGETS yy_web
   EXPORT yy_webTargets
   FILE_SET HEADERS DESTINATION include/yy_web)
@@ -77,8 +75,6 @@ write_basic_package_version_file("yy_webConfigVersion.cmake"
 install(FILES "yy_webConfig.cmake" "${CMAKE_CURRENT_BINARY_DIR}/yy_webConfigVersion.cmake"
     DESTINATION lib/cmake/yy_web)
 
-get_target_property(YY_WEB_HEADERS yy_web HEADER_SET)
-get_target_property(YY_WEB_SOURCES yy_web SOURCES)
+#add_subdirectory(unit_tests)
 
-add_custom_target(tidy-all
- COMMAND rm -f clang-tidy.log \; for f in "$$(" echo \"${YY_WEB_HEADERS} ${YY_WEB_SOURCES}\" | sed -n -e 's/;/ /pg' ")" \; do ${YY_CLANG_TIDY_CMD} ${YY_CLANG_TIDY_OPTIONS} "$$f" -- ${YY_TIDY_COMPILER_OPTIONS} >> clang-tidy.log \; done)
+add_yy_tidy_all(yy_web)
