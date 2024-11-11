@@ -25,6 +25,7 @@
 */
 
 #include "fmt/core.h"
+#include "fmt/compile.h"
 #include "spdlog/spdlog.h"
 
 #include "yy_web_server.h"
@@ -32,6 +33,7 @@
 namespace yafiyogi::yy_web {
 
 using namespace std::string_view_literals;
+using namespace fmt::literals;
 
 WebServer::WebServer(Options & options) noexcept:
   m_lib(std::make_unique<lib_type>()), // m_lib must be created before server!
@@ -61,7 +63,7 @@ bool WebServer::AddHandler(std::string uri,
   {
     if(!uri.starts_with("/"sv))
     {
-      uri = fmt::format("/{}"sv, uri);
+      uri = fmt::format("/{}"_cf, uri);
     }
     spdlog::debug("Web Server: adding handler at [{}]", uri);
 
