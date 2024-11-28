@@ -24,9 +24,16 @@
 
 */
 
+#if defined(__GNUC__) && ! defined(__clang__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnrvo"
+
 #include "fmt/core.h"
 #include "fmt/compile.h"
 #include "spdlog/spdlog.h"
+
+#pragma GCC diagnostic pop
+#endif
 
 #include "yy_web_server.h"
 
