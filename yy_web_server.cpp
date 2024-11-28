@@ -24,14 +24,16 @@
 
 */
 
-#if defined(__GNUC__) && ! defined(__clang__)
+#if ( defined(__GNUC__) && __GNUC__ > 12 ) && ! defined(__clang__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnrvo"
+#endif
 
 #include "fmt/core.h"
 #include "fmt/compile.h"
 #include "spdlog/spdlog.h"
 
+#if ( defined(__GNUC__) && __GNUC__ > 12 ) && ! defined(__clang__)
 #pragma GCC diagnostic pop
 #endif
 
