@@ -37,26 +37,31 @@ set(YY_CMAKE "${YY_ROOT}/yy_cmake")
 include(${YY_CMAKE}/cmake_common.txt)
 include(${YY_CMAKE}/cmake_clang_tidy.txt)
 
+find_package(civetweb REQUIRED)
 find_package(fmt REQUIRED)
+find_package(spdlog REQUIRED)
+find_package(yy_cpp REQUIRED)
 
 add_library(yy_web STATIC)
-
-target_include_directories(yy_web
-  PRIVATE
-    "${CMAKE_INSTALL_PREFIX}/include"
-    "${YY_THIRD_PARTY_LIBRARY}/include" )
 
 target_compile_options(yy_web
   PRIVATE
   "-DSPDLOG_COMPILED_LIB"
   "-DSPDLOG_FMT_EXTERNAL")
 
+target_include_directories(yy_web
+  SYSTEM PRIVATE
+    "${CMAKE_INSTALL_PREFIX}/include"
+    "${YY_THIRD_PARTY_LIBRARY}/include")
+
 target_sources(yy_web
   PRIVATE
     yy_web_server.cpp
+    yy_web_handler.cpp
   PUBLIC FILE_SET HEADERS
     FILES
-      yy_web_server.h)
+      yy_web_server.h
+      yy_web_handler.h)
 
 install(TARGETS yy_web
   EXPORT yy_webTargets
