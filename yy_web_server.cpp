@@ -24,18 +24,9 @@
 
 */
 
-#if ( defined(__GNUC__) && __GNUC__ > 12 ) && ! defined(__clang__)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnrvo"
-#endif
-
 #include "fmt/core.h"
 #include "fmt/compile.h"
 #include "spdlog/spdlog.h"
-
-#if ( defined(__GNUC__) && __GNUC__ > 12 ) && ! defined(__clang__)
-#pragma GCC diagnostic pop
-#endif
 
 #include "yy_web_server.h"
 
