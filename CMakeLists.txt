@@ -37,11 +37,6 @@ set(YY_CMAKE "${YY_ROOT}/yy_cmake")
 include(${YY_CMAKE}/cmake_common.txt)
 include(${YY_CMAKE}/cmake_clang_tidy.txt)
 
-find_package(civetweb REQUIRED)
-find_package(fmt REQUIRED)
-find_package(spdlog REQUIRED)
-find_package(yy_cpp REQUIRED)
-
 add_library(yy_web STATIC)
 
 target_compile_options(yy_web
