@@ -37,7 +37,7 @@
 
 namespace yafiyogi::yy_web {
 
-struct CivetWebLib
+struct CivetWebLib final
 {
     void init() noexcept
     {
