@@ -41,13 +41,16 @@ add_library(yy_web STATIC)
 
 target_compile_options(yy_web
   PRIVATE
-  "-DSPDLOG_COMPILED_LIB"
-  "-DSPDLOG_FMT_EXTERNAL")
+    "-DSPDLOG_COMPILED_LIB"
+    "-DSPDLOG_FMT_EXTERNAL")
+
+target_include_directories(yy_web
+  PRIVATE
+    "${CMAKE_INSTALL_PREFIX}/include" )
 
 target_include_directories(yy_web
   SYSTEM PRIVATE
-    "${CMAKE_INSTALL_PREFIX}/include"
-    "${YY_THIRD_PARTY_LIBRARY}/include")
+    "${YY_THIRD_PARTY_LIBRARY}/include" )
 
 target_sources(yy_web
   PRIVATE
