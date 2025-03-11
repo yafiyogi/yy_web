@@ -89,7 +89,7 @@ bool WebHandler::handleGet(CivetServer * /* server */,
                       ri->http_headers[i].value);
       }
     }
-    spdlog::debug("");
+    spdlog::debug(""sv);
   }
 
   return DoGet(conn, ri);
