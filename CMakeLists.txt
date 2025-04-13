@@ -66,7 +66,6 @@ install(TARGETS yy_web
   FILE_SET HEADERS DESTINATION include/yy_web)
 
 install(EXPORT yy_webTargets
-  FILE yy_webTargets.cmake
   NAMESPACE yy_web::
   DESTINATION lib/cmake/yy_web)
 
